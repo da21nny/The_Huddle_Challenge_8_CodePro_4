@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temas | Learn It, Love It</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar__inner">
+            <a href="/topics" class="navbar__brand">🎓 <span>Learn It, Love It</span></a>
+            <nav class="navbar__nav">
+                <a href="/topics/new" class="nav-link">➕ Nuevo Tema</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">Explora los Temas</h1>
+        <div id="topics-container" class="topics-grid">
+            <% topics.forEach(topic => { %>
+                <article class="card topic-card" id="topic-<%= topic.id %>">
+                    <div class="card__content">
+                        <h2 class="card__title"><a href="/topics/<%= topic.id %>"><%= topic.title %></a></h2>
+                        <p class="card__desc"><%= topic.description %></p>
+                    </div>
+                    <div class="card__footer">
+                        <button class="vote-btn vote-btn--topic" data-id="<%= topic.id %>">
+                            👍 Votar <span id="count-topic-<%= topic.id %>" class="vote-count"><%= topic.votes %></span>
+                        </button>
+                        <a href="/topics/<%= topic.id %>" class="btn btn--outline">Ver Tema</a>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Learn It, Love It Inc.</p>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+</html>
