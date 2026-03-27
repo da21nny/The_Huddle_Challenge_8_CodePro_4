@@ -1,0 +1,70 @@
+<%# Vista: formulario para agregar un nuevo link a un topic %>
+  <!DOCTYPE html>
+  <html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevo Enlace | Learn It, Love It</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+
+    <!-- Barra de navegación -->
+    <header class="navbar">
+      <div class="navbar__inner">
+        <a href="/topics" class="navbar__brand">🎓 <span>Learn It, Love It</span></a>
+        <nav class="navbar__nav">
+          <a href="/topics/<%= topic.id %>" class="nav-link">← Volver a "<%= topic.title %>"</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="form-container">
+        <div class="form-card">
+
+          <div class="form-card__header">
+            <h1 class="form-card__title">🔗 Nuevo Enlace</h1>
+            <p class="form-card__subtitle">Agrega un recurso útil al tema: <strong>
+                <%= topic.title %>
+              </strong></p>
+          </div>
+
+          <!-- Formulario de creación de link -->
+          <form action="/topics/<%= topic.id %>/links" method="POST" class="form">
+
+            <div class="form-group">
+              <label for="url" class="form-label">URL del recurso</label>
+              <input type="url" id="url" name="url" class="form-input" placeholder="https://ejemplo.com/recurso"
+                required />
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">¿Por qué es útil?</label>
+              <textarea id="description" name="description" class="form-input form-textarea"
+                placeholder="Describe brevemente qué aporta este recurso" rows="3" required maxlength="300"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <a href="/topics/<%= topic.id %>" class="btn btn--ghost">Cancelar</a>
+              <button type="submit" class="btn btn--primary">Agregar Enlace</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© 2024 Learn It, Love It Inc.</p>
+    </footer>
+
+    <script src="/js/main.js"></script>
+  </body>
+
+  </html>
