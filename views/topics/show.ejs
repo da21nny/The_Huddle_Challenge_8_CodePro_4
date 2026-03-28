@@ -1,69 +1,51 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= topic.title %> | Learn It, Love It</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
 </head>
 <body>
-    <header class="navbar">
-        <div class="navbar__inner">
-            <a href="/topics" class="navbar__brand">🎓 Learn It, Love It</a>
-            <nav class="navbar__nav">
-                <a href="/topics" class="nav-link">← Volver</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <h1 class="page-title"><%= topic.title %></h1>
-        <p class="card__desc" style="margin-bottom:1.5rem;"><%= topic.description %></p>
-
-        <div style="display:flex; gap:8px; margin-bottom:2rem;">
-            <a href="/topics/<%= topic.id %>/edit" class="btn btn--ghost">✏️ Editar</a>
-            <form action="/topics/<%= topic.id %>?_method=DELETE" method="POST" class="inline-form">
-                <button type="submit" class="btn btn--ghost" style="color:var(--primary);">🗑️ Eliminar</button>
+    <div class="header">
+        <h1><%= topic.title %></h1>
+        <a href="/topics" class="btn">Back to Topics</a>
+    </div>
+    
+    <div class="card">
+        <p><%= topic.description %></p>
+        <div style="margin-top: 15px;">
+            <a href="/topics/<%= topic.id %>/edit" class="btn">Edit Topic</a>
+            <form action="/topics/<%= topic.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete Topic</button>
             </form>
         </div>
+    </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-            <h2 style="font-size:1.1rem;">Enlaces</h2>
-            <a href="/topics/<%= topic.id %>/links/new" class="btn btn--primary">+ Enlace</a>
-        </div>
-
-        <div id="links-container" style="display:flex; flex-direction:column; gap:0.75rem;">
-            <% if(topic.links && topic.links.length > 0) { %>
-                <% topic.links.forEach(link => { %>
-                    <div class="card" id="link-<%= link.id %>" style="flex-direction:row; align-items:center;">
-                        <div style="flex:1;">
-                            <a href="<%= link.url %>" target="_blank" style="color:var(--primary-h); font-weight:600;"><%= link.url %></a>
-                            <p class="card__desc"><%= link.description %></p>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:8px;">
-                            <button class="vote-btn vote-btn--link" data-topic-id="<%= topic.id %>" data-link-id="<%= link.id %>">
-                                👍 <span id="count-link-<%= link.id %>" class="vote-count"><%= link.votes %></span>
-                            </button>
-                            <a href="/topics/<%= topic.id %>/links/<%= link.id %>/edit" class="btn btn--ghost">✏️</a>
-                            <form action="/topics/<%= topic.id %>/links/<%= link.id %>?_method=DELETE" method="POST" class="inline-form">
-                                <button type="submit" class="btn btn--ghost" style="color:var(--primary);">🗑️</button>
-                            </form>
-                        </div>
-                    </div>
-                <% }) %>
-            <% } else { %>
-                <div class="empty-state">
-                    <p>No hay enlaces. ¡Agrega uno!</p>
+    <h3>Links</h3>
+    <a href="/topics/<%= topic.id %>/links/new" class="btn">Add Link</a>
+    
+    <div id="links-list" style="margin-top: 20px;">
+        <% if(topic.links.length === 0) { %>
+            <p>No links yet. Add one!</p>
+        <% } %>
+        
+        <% topic.links.forEach(link => { %>
+            <div class="card link-card">
+                <a href="<%= link.url %>" target="_blank" style="font-size: 18px; font-weight: bold;"><%= link.url %></a>
+                <p><%= link.description %></p>
+                <div class="votes-box">
+                    <button class="btn" onclick="voteLink('<%= topic.id %>', '<%= link.id %>')">Upvote</button>
+                    Votes: <span id="votes-link-<%= link.id %>" class="vote-count"><%= link.votes %></span>
+                    
+                    <span style="margin-left: 15px;">
+                        <a href="/topics/<%= topic.id %>/links/<%= link.id %>/edit" class="btn">Edit</a>
+                        <form action="/topics/<%= topic.id %>/links/<%= link.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </span>
                 </div>
-            <% } %>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <p>© 2026 Learn It, Love It Inc.</p>
-    </footer>
-    <script src="/js/main.js"></script>
+            </div>
+        <% }) %>
+    </div>
 </body>
 </html>
