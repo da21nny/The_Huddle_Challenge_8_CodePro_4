@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Topics | Learn It, Love It</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Topics</h1>
+        <a href="/topics/new" class="btn">Add Topic</a>
+    </div>
+    
+    <div id="topics-list">
+        <% topics.forEach(topic => { %>
+            <div class="card topic-card">
+                <h2><a href="/topics/<%= topic.id %>"><%= topic.title %></a></h2>
+                <p><%= topic.description %></p>
+                <div class="votes-box">
+                    <button class="btn" onclick="voteTopic('<%= topic.id %>')">Upvote</button>
+                    Votes: <span id="votes-topic-<%= topic.id %>" class="vote-count"><%= topic.votes %></span>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
