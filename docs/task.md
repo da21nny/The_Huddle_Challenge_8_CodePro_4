@@ -8,26 +8,26 @@
 - `[x]` Configurar `express` y EJS como motor de vistas en `app.js`.
 
 ## 2. Desarrollo del Modelo de Datos Persistente
-- `[ ]` Crear la carpeta `data` y el archivo `db.json` con el arreglo inicial de temas.
-- `[ ]` Crear la carpeta `models` y el archivo `dataModel.js`.
-- `[ ]` Codificar en `dataModel.js` métodos utilitarios: leer archivo, escribir archivo.
+- `[x]` Crear la carpeta `data` y el archivo `db.json` con el arreglo inicial de temas.
+- `[x]` Crear la carpeta `models` y el archivo `dataModel.js`.
+- `[x]` Codificar en `dataModel.js` métodos utilitarios: leer archivo, escribir archivo.
 
 ## 3. Desarrollo CRUD Base de "Temas" (Back-End)
-- `[ ]` Crear la carpeta `controllers`.
-- `[ ]` Codificar `topicController.js` (Funciones CRUD: crear, ver listado ordenado, actualizar, eliminar, incrementar voto).
-- `[ ]` Crear la carpeta `routes`.
-- `[ ]` Crear `topicRoutes.js` emparejando endpoints GET y POST a las funciones del Topic Controller.
+- `[x]` Crear la carpeta `controllers`.
+- `[x]` Codificar `topicController.js` (Funciones CRUD: crear, ver listado ordenado, actualizar, eliminar, incrementar voto).
+- `[x]` Crear la carpeta `routes`.
+- `[x]` Crear `topicRoutes.js` emparejando endpoints GET y POST a las funciones del Topic Controller.
 
 ## 4. Vistas en EJS para "Temas"
-- `[ ]` Crear la carpeta `views`.
-- `[ ]` Codificar vista principal `index.ejs` listar los temas mostrándolos con su voto.
-- `[ ]` Codificar formulario `topic_form.ejs` de creación / edición de un tema.
+- `[x]` Crear la carpeta `views`.
+- `[x]` Codificar vista principal `index.ejs` listar los temas mostrándolos con su voto.
+- `[x]` Codificar formulario `topic_form.ejs` de creación / edición de un tema.
 
 ## 5. Desarrollo CRUD de "Enlaces" anidados a temas
-- `[ ]` Codificar `linkController.js` (Funciones CRUD: crear en un tema espefico, actualizar, eliminar, voto en enlace).
-- `[ ]` Crear `linkRoutes.js` y vincular los endpoints.
+- `[x]` Codificar `linkController.js` (Funciones CRUD: crear en un tema espefico, actualizar, eliminar, voto en enlace).
+- `[x]` Crear `linkRoutes.js` y vincular los endpoints.
 - `[ ]` Codificar la vista de detalle `show.ejs` para iterar los enlaces pertenecientes a un tema puntual.
-- `[ ]` Codificar formulario para el enlace en `link_form.ejs`.
+- `[x]` Codificar formulario para el enlace en `link_form.ejs`.
 
 ## 6. Lógica de Sistema de Votaciones y Frontend
 - `[ ]` Ajustar el Backend (controllers) para que toda ruta de `.../vote` responda un JSON (estado actualizado) con el nuevo valor de voto y orden en vez de forzar una renderización de la página `<ejs>`.
