@@ -1,4 +1,4 @@
 node_modules
 data/db.json
 .env
-src/data/learning_platform.db
+data/learning_platform.db
