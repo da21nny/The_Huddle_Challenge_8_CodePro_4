@@ -32,4 +32,4 @@ const update = async (req, res) => {
     res.redirect(`/topics/${topicId}`);
 };
 
-export { index, store, vote, destroy, update };
+export { index, store, vote, destroy, update };
