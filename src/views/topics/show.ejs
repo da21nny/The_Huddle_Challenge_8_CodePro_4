@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= topic.title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <a href="/topics">← Volver a Temas</a>
+
+    <h1><%= topic.title %></h1>
+    <p><%= topic.description %></p>
+    <span>Votos: <%= topic.votes %></span>
+
+    <!-- Votar por este tema -->
+    <form action="/topics/<%= topic.id %>/vote" method="POST" style="display:inline;">
+        <button type="submit">👍 Votar</button>
+    </form>
+
+    <!-- Eliminar este tema -->
+    <form action="/topics/<%= topic.id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit">🗑️ Eliminar Tema</button>
+    </form>
+
+    <hr>
+
+    <!-- Formulario para agregar un enlace -->
+    <h2>Agregar Enlace</h2>
+    <form action="/topics/<%= topic.id %>/links" method="POST">
+        <input type="text" name="title" placeholder="Título del enlace" required>
+        <input type="text" name="url" placeholder="URL del enlace" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <!-- Lista de enlaces -->
+    <h2>Enlaces</h2>
+    <ul>
+        <% links.forEach(link => { %>
+            <li class="link">
+                <a href="<%= link.url %>" target="_blank">
+                    <strong><%= link.title %></strong>
+                </a>
+                <span>Votos: <%= link.votes %></span>
+
+                <!-- Votar enlace -->
+                <form action="/topics/<%= topic.id %>/links/<%= link.id %>/vote" method="POST" style="display:inline;">
+                    <button type="submit">👍 Votar</button>
+                </form>
+
+                <!-- Eliminar enlace -->
+                <form action="/topics/<%= topic.id %>/links/<%= link.id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit">🗑️ Eliminar</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
