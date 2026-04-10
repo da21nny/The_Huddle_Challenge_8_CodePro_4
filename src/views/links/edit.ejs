@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Enlace</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <a href="/topics/<%= topicId %>">← Volver al Tema</a>
+
+    <h1>Editar Enlace</h1>
+    <form action="/topics/<%= topicId %>/links/<%= link.id %>?_method=PUT" method="POST">
+        <input type="text" name="title" value="<%= link.title %>" placeholder="Título del enlace" required>
+        <input type="text" name="url" value="<%= link.url %>" placeholder="URL del enlace" required>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
