@@ -19,6 +19,12 @@ const vote = async (req, res) => {
     res.redirect(`/topics/${topicId}`);
 };
 
+const edit = async (req, res) => {
+    const { id, topicId } = req.params;
+    const link = await linkModel.getLinkById(id);
+    res.render("links/edit", { link, topicId });
+};
+
 const destroy = async (req, res) => {
     const { id, topicId } = req.params;
     await linkModel.deleteLink(id);
@@ -32,4 +38,4 @@ const update = async (req, res) => {
     res.redirect(`/topics/${topicId}`);
 };
 
-export { index, store, vote, destroy, update };
+export { index, store, vote, edit, destroy, update };
