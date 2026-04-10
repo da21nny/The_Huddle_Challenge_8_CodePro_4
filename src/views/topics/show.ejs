@@ -41,11 +41,9 @@
                         <%= link.title %>
                     </strong>
                 </a>
-                <span>Votos: <%= link.votes %></span>
-
                 <!-- Votar enlace -->
-                <button class="vote-link-btn" data-id="<%= link.id %>" data-topic-id="<%= topic.id %>">👍 Votar</button>
                 <span id="vote-count-<%= link.id %>">Votos: <%= link.votes %></span>
+                <button class="vote-link-btn" data-id="<%= link.id %>" data-topic-id="<%= topic.id %>">👍 Votar</button>
 
                 <!-- Editar enlace -->
                 <a href="/topics/<%= topic.id %>/links/<%= link.id %>/edit">✏️ Editar</a>
