@@ -38,9 +38,12 @@ const getTopicById = (id) => {
 
 const deleteTopic = (id) => {
     return new Promise((resolve, reject) => {
-        db.run("DELETE FROM topics WHERE id = ?", [id], function (err) {
+        db.run("DELETE FROM links WHERE topic_id = ?", [id], function (err) {
             if (err) reject(err);
-            resolve(this.changes);
+            db.run("DELETE FROM topics WHERE id = ?", [id], function (err) {
+                if (err) reject(err);
+                resolve(this.changes);
+            });
         });
     });
 };
