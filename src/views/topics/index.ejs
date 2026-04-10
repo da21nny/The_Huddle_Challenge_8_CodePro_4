@@ -37,6 +37,9 @@
                     <button type="submit">👍 Votar</button>
                 </form>
 
+                <!-- Botón de editar -->
+                <a href="/topics/<%= topic.id %>/edit">✏️ Editar</a>
+
                 <!-- Botón de eliminar -->
                 <form action="/topics/<%= topic.id %>?_method=DELETE" method="POST" style="display:inline;">
                     <button type="submit">🗑️ Eliminar</button>
