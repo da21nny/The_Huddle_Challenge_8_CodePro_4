@@ -2,9 +2,18 @@ import db from "../config/db.js";
 
 const getLinksByTopic = (topicId) => {
     return new Promise((resolve, reject) => {
-        db.all("SELECT * FROM links WHERE topic_id = ?", [topicId], (err, rows) => {
+        db.all("SELECT * FROM links WHERE topic_id = ? ORDER BY votes DESC", [topicId], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
+        });
+    });
+};
+
+const getLinkById = (id) => {
+    return new Promise((resolve, reject) => {
+        db.get("SELECT * FROM links WHERE id = ?", [id], (err, row) => {
+            if (err) reject(err);
+            resolve(row);
         });
     });
 };
@@ -45,4 +54,4 @@ const updateLink = (id, title, url) => {
     });
 };
 
-export { getLinksByTopic, createLink, voteLink, deleteLink, updateLink };
+export { getLinksByTopic, getLinkById, createLink, voteLink, deleteLink, updateLink };
