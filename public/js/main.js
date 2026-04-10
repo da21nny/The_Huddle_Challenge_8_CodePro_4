@@ -1,31 +1,35 @@
-function voteTopic(id) {
-    fetch(`/topics/${id}/vote`, { method: 'POST' })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        });
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const voteTopicButtons = document.querySelectorAll(".vote-topic-btn");
+    const voteLinkButtons = document.querySelectorAll(".vote-link-btn");
 
-function voteLink(id) {
-    fetch(`/links/${id}/vote`, { method: 'POST' })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
+    voteTopicButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const topicId = button.dataset.id;
+            fetch(`/topics/${topicId}/vote`, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    const voteSpan = document.getElementById(`topic-votes-${topicId}`);
+                    if (voteSpan) {
+                        voteSpan.innerText = `Votos: ${data.votes}`;
+                        voteSpan.classList.add("voted-success"); // Usar clase definida en CSS
+                    }
+                });
         });
-}
+    });
 
-function sortTopics() {
-    fetch('/topics/sort', { method: 'POST' })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
+    voteLinkButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const linkId = button.dataset.id;
+            const topicId = button.dataset.topicId;
+            fetch(`/topics/${topicId}/links/${linkId}/vote`, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    const voteSpan = document.getElementById(`vote-count-${linkId}`);
+                    if (voteSpan) {
+                        voteSpan.innerText = `Votos: ${data.votes}`;
+                        voteSpan.classList.add("voted-success"); // Usar clase definida en CSS
+                    }
+                });
         });
-}
-
-function sortLinks() {
-    fetch('/links/sort', { method: 'POST' })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        });
-}
+    });
+});
