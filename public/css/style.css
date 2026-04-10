@@ -196,3 +196,17 @@ ul {
     color: #2ecc71;
     margin: 0 12px;
 }
+
+.vote-topic-btn {
+    background-color: #4361ee;
+    color: #fff;
+}
+
+.vote-link-btn {
+    background-color: #4361ee;
+    color: #fff;
+}
+
+.voted-success {
+    color: #00b894 !important; /* Verde destacado */
+}

@@ -8,12 +8,10 @@
     <p>
         <%= topic.description %>
     </p>
-    <span>Votos: <%= topic.votes %></span>
 
     <!-- Votar por este tema -->
-    <form action="/topics/<%= topic.id %>/vote" method="POST" style="display:inline;">
-        <button type="submit">👍 Votar</button>
-    </form>
+    <span id="topic-votes-<%= topic.id %>">Votos: <%= topic.votes %></span>
+    <button class="vote-topic-btn" data-id="<%= topic.id %>">👍 Votar</button>
 
     <!-- Editar este tema -->
     <a href="/topics/<%= topic.id %>/edit">✏️ Editar Tema</a>
@@ -46,9 +44,8 @@
                 <span>Votos: <%= link.votes %></span>
 
                 <!-- Votar enlace -->
-                <form action="/topics/<%= topic.id %>/links/<%= link.id %>/vote" method="POST" style="display:inline;">
-                    <button type="submit">👍 Votar</button>
-                </form>
+                <button class="vote-link-btn" data-id="<%= link.id %>" data-topic-id="<%= topic.id %>">👍 Votar</button>
+                <span id="vote-count-<%= link.id %>">Votos: <%= link.votes %></span>
 
                 <!-- Editar enlace -->
                 <a href="/topics/<%= topic.id %>/links/<%= link.id %>/edit">✏️ Editar</a>
@@ -61,7 +58,5 @@
             </li>
             <% }) %>
     </ul>
-
-    <script src="/js/main.js"></script>
 
     <%- include('../partials/footer.ejs') %>

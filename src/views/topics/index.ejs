@@ -21,12 +21,10 @@
                 <p>
                     <%= topic.description %>
                 </p>
-                <span>Votos: <%= topic.votes %></span>
 
                 <!-- Botón de votar -->
-                <form action="/topics/<%= topic.id %>/vote" method="POST" style="display:inline;">
-                    <button type="submit">👍 Votar</button>
-                </form>
+                <span id="topic-votes-<%= topic.id %>">Votos: <%= topic.votes %></span>
+                <button class="vote-topic-btn" data-id="<%= topic.id %>">👍 Votar</button>
 
                 <!-- Botón de editar -->
                 <a href="/topics/<%= topic.id %>/edit">✏️ Editar</a>
@@ -38,7 +36,5 @@
             </li>
             <% }) %>
     </ul>
-
-    <script src="/js/main.js"></script>
 
     <%- include('../partials/footer.ejs') %>
