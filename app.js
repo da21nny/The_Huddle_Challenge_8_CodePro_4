@@ -24,13 +24,6 @@ app.set("views", path.join(__dirname, "src/views"));
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "src/views")));
-app.use(express.static(path.join(__dirname, "src/views/topics")));
-app.use(express.static(path.join(__dirname, "src/views/links")));
-app.use(express.static(path.join(__dirname, "src/controllers")));
-app.use(express.static(path.join(__dirname, "src/routes")));
-app.use(express.static(path.join(__dirname, "src/models")));
-app.use(express.static(path.join(__dirname, "src/config")));
 
 // Routes
 app.use(topicRoutes);
