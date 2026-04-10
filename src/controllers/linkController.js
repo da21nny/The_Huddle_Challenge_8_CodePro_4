@@ -16,7 +16,8 @@ const store = async (req, res) => {
 const vote = async (req, res) => {
     const { id, topicId } = req.params;
     await linkModel.voteLink(id);
-    res.redirect(`/topics/${topicId}`);
+    const updatedLink = await linkModel.getLinkById(id);
+    res.json({ votes: updatedLink.votes });
 };
 
 const edit = async (req, res) => {

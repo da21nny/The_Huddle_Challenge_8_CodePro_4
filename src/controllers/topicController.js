@@ -15,7 +15,8 @@ const store = async (req, res) => {
 const vote = async (req, res) => {
     const { id } = req.params;
     await topicModel.voteTopic(id);
-    res.redirect("/topics");
+    const updatedTopic = await topicModel.getTopicById(id);
+    res.json({ votes: updatedTopic.votes });
 };
 
 const show = async (req, res) => {
