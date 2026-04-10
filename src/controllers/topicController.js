@@ -1,4 +1,5 @@
 import * as topicModel from "../models/topicModel.js";
+import * as linkModel from "../models/linkModel.js";
 
 const index = async (req, res) => {
     const topics = await topicModel.getAllTopics();
@@ -20,7 +21,8 @@ const vote = async (req, res) => {
 const show = async (req, res) => {
     const { id } = req.params;
     const topic = await topicModel.getTopicById(id);
-    res.render("topics/show", { topic });
+    const links = await linkModel.getLinksByTopic(id);
+    res.render("topics/show", { topic, links });
 };
 
 const destroy = async (req, res) => {
