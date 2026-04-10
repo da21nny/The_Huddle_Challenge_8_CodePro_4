@@ -20,6 +20,9 @@
         <button type="submit">👍 Votar</button>
     </form>
 
+    <!-- Editar este tema -->
+    <a href="/topics/<%= topic.id %>/edit">✏️ Editar Tema</a>
+
     <!-- Eliminar este tema -->
     <form action="/topics/<%= topic.id %>?_method=DELETE" method="POST" style="display:inline;">
         <button type="submit">🗑️ Eliminar Tema</button>
@@ -49,6 +52,9 @@
                 <form action="/topics/<%= topic.id %>/links/<%= link.id %>/vote" method="POST" style="display:inline;">
                     <button type="submit">👍 Votar</button>
                 </form>
+
+                <!-- Editar enlace -->
+                <a href="/topics/<%= topic.id %>/links/<%= link.id %>/edit">✏️ Editar</a>
 
                 <!-- Eliminar enlace -->
                 <form action="/topics/<%= topic.id %>/links/<%= link.id %>?_method=DELETE" method="POST" style="display:inline;">
