@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Tema</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
     <a href="/topics">← Volver a Temas</a>
 
     <h1>Editar Tema</h1>
     <form action="/topics/<%= topic.id %>?_method=PUT" method="POST">
         <input type="text" name="title" value="<%= topic.title %>" placeholder="Título del tema" required>
-        <input type="text" name="description" value="<%= topic.description %>" placeholder="Descripción del tema" required>
+        <input type="text" name="description" value="<%= topic.description %>" placeholder="Descripción del tema"
+            required>
         <button type="submit">Actualizar</button>
     </form>
 
     <script src="/js/main.js"></script>
-</body>
 
-</html>
+    <%- include('../partials/footer.ejs') %>
