@@ -25,6 +25,12 @@ const show = async (req, res) => {
     res.render("topics/show", { topic, links });
 };
 
+const edit = async (req, res) => {
+    const { id } = req.params;
+    const topic = await topicModel.getTopicById(id);
+    res.render("topics/edit", { topic });
+};
+
 const destroy = async (req, res) => {
     const { id } = req.params;
     await topicModel.deleteTopic(id);
@@ -38,4 +44,4 @@ const update = async (req, res) => {
     res.redirect("/topics");
 };
 
-export { index, store, vote, show, destroy, update };
+export { index, store, vote, show, edit, destroy, update };
