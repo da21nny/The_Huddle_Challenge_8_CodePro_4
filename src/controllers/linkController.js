@@ -3,8 +3,7 @@ import * as linkModel from "../models/linkModel.js";
 const index = async (req, res) => {
     try {
         const { topicId } = req.params;
-        const links = await linkModel.getLinksByTopic(topicId);
-        res.render("links/index", { links });
+        res.redirect(`/topics/${topicId}`);
     } catch (error) {
         res.render("error", { message: "Error al obtener los enlaces" });
     }
