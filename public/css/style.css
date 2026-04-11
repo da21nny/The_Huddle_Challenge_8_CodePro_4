@@ -208,5 +208,34 @@ ul {
 }
 
 .voted-success {
-    color: #00b894 !important; /* Verde destacado */
+    color: #00b894 !important;
+    /* Verde destacado */
+}
+
+/* ===== Header ===== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    margin-bottom: 32px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.header-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-decoration: none;
+}
+
+.header-logo:hover {
+    color: #4361ee;
+    text-decoration: none;
+}
+
+header nav a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4361ee;
 }
