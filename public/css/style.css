@@ -251,17 +251,4 @@ footer {
 footer p {
     font-size: 0.85rem;
     color: #9a9ab0;
-}
-
-/* ===== Footer ===== */
-footer {
-    margin-top: 48px;
-    padding: 20px 0;
-    border-top: 1px solid #e0e0e0;
-    text-align: center;
-}
-
-footer p {
-    font-size: 0.85rem;
-    color: #9a9ab0;
-}
+}
