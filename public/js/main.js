@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         voteSpan.innerText = `Votos: ${data.votes}`;
                         voteSpan.classList.add("voted-success"); // Usar clase definida en CSS
                     }
+                })
+                .catch(error => {
+                    console.error("Error al votar el tema:", error);
                 });
         });
     });
@@ -29,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         voteSpan.innerText = `Votos: ${data.votes}`;
                         voteSpan.classList.add("voted-success"); // Usar clase definida en CSS
                     }
+                })
+                .catch(error => {
+                    console.error("Error al votar el enlace:", error);
                 });
         });
     });
