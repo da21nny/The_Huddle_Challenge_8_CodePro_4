@@ -2,16 +2,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const voteTopicButtons = document.querySelectorAll(".vote-topic-btn");
     const voteLinkButtons = document.querySelectorAll(".vote-link-btn");
 
-    const reorderList = (listItems) => {
-        const ul = listItems.parentElement;
-        const items = Array.from(listItems);
+    const reorderList = (listItem) => {
+        const ul = listItem.parentElement;
+        const items = Array.from(ul.children);
         items.sort((a, b) => {
-            const votesA = parseInt(a.querySelector("span")?.innerText.replace("Votos: ", ""));
-            const votesB = parseInt(b.querySelector("span")?.innerText.replace("Votos: ", ""));
+            const votesA = parseInt(a.querySelector("span")?.innerText.replace("Votos: ", "")) || 0;
+            const votesB = parseInt(b.querySelector("span")?.innerText.replace("Votos: ", "")) || 0;
             return votesB - votesA;
         });
         items.forEach(item => ul.appendChild(item));
-    }
+    };
 
     voteTopicButtons.forEach(button => {
         button.addEventListener("click", () => {
