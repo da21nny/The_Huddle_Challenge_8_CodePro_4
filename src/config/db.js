@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 const dbFile = path.join(__dirname, "../../data/learning_platform.db");
 const db = new sqlite3.Database(dbFile, (err) => {
     if (err) {
-        console.log("Error al abrir/crear la base de datos");
+        console.log("Error al abrir/crear la base de datos", err.message);
+        return;
     }
     console.log("Conectado a la base de datos");
 });
