@@ -36,3 +36,12 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+app.use((req, res) => {
+    res.status(404).render("error", { message: "Pagina no encontrada" });
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render("error", { message: "Error interno del servidor" });
+});
