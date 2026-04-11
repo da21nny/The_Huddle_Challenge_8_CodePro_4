@@ -39,11 +39,11 @@ app.use(topicRoutes);
 app.use(linkRoutes);
 
 // ===== Manejo de errores =====
-app.use((req, res) => {
+app.use((req, res) => { // Manejo de errores 404
     res.status(404).render("error", { message: "Pagina no encontrada" });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => { // Manejo de errores 500
     console.error(err.stack);
     res.status(500).render("error", { message: "Error interno del servidor" });
 });
@@ -51,4 +51,4 @@ app.use((err, req, res, next) => {
 // ===== Inicio del servidor =====
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
-});
+});
