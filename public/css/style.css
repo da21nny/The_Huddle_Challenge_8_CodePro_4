@@ -1,4 +1,25 @@
-/* ===== Reset & Base ===== */
+/*
+ * ============================================================
+ * Learn It, Love It Inc. — Hoja de estilos principal
+ * ============================================================
+ *
+ * Estructura del archivo:
+ *   1. Reset & Base
+ *   2. Typography
+ *   3. Links
+ *   4. Header
+ *   5. Footer
+ *   6. Forms & Inputs
+ *   7. Buttons (base + colores CRUD)
+ *   8. Lists
+ *   9. Cards — Topics
+ *  10. Cards — Links
+ *  11. Votes
+ *
+ * ============================================================
+ */
+
+/* ===== 1. Reset & Base ===== */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +36,7 @@ body {
     line-height: 1.6;
 }
 
-/* ===== Typography ===== */
+/* ===== 2. Typography ===== */
 h1 {
     font-size: 1.8rem;
     font-weight: 700;
@@ -42,7 +63,7 @@ hr {
     margin: 24px 0;
 }
 
-/* ===== Links ===== */
+/* ===== 3. Links ===== */
 a {
     color: #4361ee;
     text-decoration: none;
@@ -54,7 +75,48 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ===== Forms ===== */
+/* ===== 4. Header ===== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    margin-bottom: 32px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.header-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-decoration: none;
+}
+
+.header-logo:hover {
+    color: #4361ee;
+    text-decoration: none;
+}
+
+header nav a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4361ee;
+}
+
+/* ===== 5. Footer ===== */
+footer {
+    margin-top: 48px;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.85rem;
+    color: #9a9ab0;
+}
+
+/* ===== 6. Forms & Inputs ===== */
 form[style*="inline"] {
     display: inline !important;
 }
@@ -89,7 +151,9 @@ input[type="text"]::placeholder {
     color: #aaa;
 }
 
-/* ===== Buttons — Base ===== */
+/* ===== 7. Buttons ===== */
+
+/* Base */
 button {
     padding: 8px 16px;
     border: none;
@@ -109,34 +173,26 @@ button:active {
     transform: scale(0.97);
 }
 
-/* ===== Buttons — CRUD Colors ===== */
-
-/* Create (green) */
+/* Crear — verde */
 form[action="/topics"] button[type="submit"],
 form[action*="/links"] button[type="submit"]:not(form[action*="vote"] button):not(form[action*="DELETE"] button) {
     background-color: #2ecc71;
     color: #fff;
 }
 
-/* Vote (blue) */
-form[action*="/vote"] button {
-    background-color: #4361ee;
-    color: #fff;
-}
-
-/* Delete (red) */
+/* Eliminar — rojo */
 form[action*="_method=DELETE"] button {
     background-color: #e74c3c;
     color: #fff;
 }
 
-/* ===== Lists ===== */
+/* ===== 8. Lists ===== */
 ul {
     list-style: none;
     padding: 0;
 }
 
-/* ===== Cards — Topics ===== */
+/* ===== 9. Cards — Topics ===== */
 .topic {
     background-color: #ffffff;
     padding: 18px 20px;
@@ -170,7 +226,7 @@ ul {
     margin-right: 12px;
 }
 
-/* ===== Cards — Links ===== */
+/* ===== 10. Cards — Links ===== */
 .link {
     background-color: #ffffff;
     padding: 14px 18px;
@@ -197,58 +253,17 @@ ul {
     margin: 0 12px;
 }
 
-.vote-topic-btn {
-    background-color: #4361ee;
-    color: #fff;
-}
+/* ===== 11. Votes ===== */
 
+/* Botones de votar — azul */
+.vote-topic-btn,
 .vote-link-btn {
     background-color: #4361ee;
     color: #fff;
 }
 
+/* Feedback visual al votar — verde destacado */
 .voted-success {
     color: #00b894 !important;
-    /* Verde destacado */
 }
-
-/* ===== Header ===== */
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-    margin-bottom: 32px;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-.header-logo {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a1a2e;
-    text-decoration: none;
-}
-
-.header-logo:hover {
-    color: #4361ee;
-    text-decoration: none;
-}
-
-header nav a {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #4361ee;
-}
-
-/* ===== Footer ===== */
-footer {
-    margin-top: 48px;
-    padding: 20px 0;
-    border-top: 1px solid #e0e0e0;
-    text-align: center;
-}
-
-footer p {
-    font-size: 0.85rem;
-    color: #9a9ab0;
-}
+
