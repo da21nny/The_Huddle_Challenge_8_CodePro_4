@@ -2,48 +2,47 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import express, { json, urlencoded } from "express";
-import methodOverride from "method-override";
-import { initDB } from "./src/config/db.js";
+import methodOverride from "method-override"; // Permite usar PUT y DELETE en formularios HTML
+import { initDB } from "./src/config/db.js"; // Función para crear las tablas
 import topicRoutes from "./src/routes/topicRoutes.js";
 import linkRoutes from "./src/routes/linkRoutes.js";
 
 // ===== Configuración de rutas del sistema =====
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url); // Ruta del archivo actual (requerido en ES Modules)
+const __dirname = path.dirname(__filename); // Directorio del archivo actual
 
 // ===== Instancia de Express =====
-const app = express();
-const PORT = 3000;
+const app = express(); // Instancia de Express
+const PORT = 3000; // Puerto del servidor
 
 // ===== Base de datos =====
-initDB();
+initDB(); // Crea las tablas si no existen
 
 // ===== Middleware =====
-app.use(json());
-app.use(urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
+app.use(json()); // Parsea cuerpos JSON (para peticiones AJAX)
+app.use(urlencoded({ extended: true })); // Parsea cuerpos de formularios HTML
+app.use(methodOverride("_method")); // Lee ?_method=PUT/DELETE del query string
 
 // ===== Motor de plantillas =====
-app.set("views", path.join(__dirname, "src/views"));
-app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "src/views")); // Directorio de vistas EJS
+app.set("view engine", "ejs"); // Establece EJS como motor de plantillas
 
 // ===== Archivos estáticos =====
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"))); // Sirve CSS, JS e imágenes desde /public
 
 // ===== Rutas =====
-app.get("/", (req, res) => {
+app.get("/", (req, res) => { // Redirige la raíz a la lista de topics
     res.redirect("/topics");
 });
-
-app.use(topicRoutes);
-app.use(linkRoutes);
+app.use(topicRoutes); // Monta las rutas de topics
+app.use(linkRoutes); // Monta las rutas de enlaces
 
 // ===== Manejo de errores =====
-app.use((req, res) => { // Manejo de errores 404
+app.use((req, res) => { // Manejo de errores 404 - Ruta no encontrada
     res.status(404).render("error", { message: "Pagina no encontrada" });
 });
 
-app.use((err, req, res, next) => { // Manejo de errores 500
+app.use((err, req, res, next) => { // Manejo de errores 500 - Error interno del servidor
     console.error(err.stack);
     res.status(500).render("error", { message: "Error interno del servidor" });
 });
