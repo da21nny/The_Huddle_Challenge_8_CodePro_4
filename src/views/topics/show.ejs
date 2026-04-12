@@ -1,7 +1,10 @@
+<!-- Incluye el header con head, navbar y apertura del main -->
 <%- include('../partials/header.ejs') %>
 
+    <!-- Enlace para volver a la lista de topics -->
     <a href="/topics">← Volver a Temas</a>
 
+    <!-- Detalle del topic: título y descripción -->
     <h1>
         <%= topic.title %>
     </h1>
@@ -9,21 +12,21 @@
         <%= topic.description %>
     </p>
 
-    <!-- Votar por este tema -->
+    <!-- Contador de votos y botón para votar el topic (AJAX) -->
     <span id="topic-votes-<%= topic.id %>">Votos: <%= topic.votes %></span>
     <button class="vote-topic-btn" data-id="<%= topic.id %>">👍 Votar</button>
 
-    <!-- Editar este tema -->
+    <!-- Enlace para editar este topic -->
     <a href="/topics/<%= topic.id %>/edit">✏️ Editar Tema</a>
 
-    <!-- Eliminar este tema -->
+    <!-- Formulario de eliminar topic: envía DELETE mediante method-override -->
     <form action="/topics/<%= topic.id %>?_method=DELETE" method="POST" style="display:inline;">
         <button type="submit">🗑️ Eliminar Tema</button>
     </form>
 
     <hr>
 
-    <!-- Formulario para agregar un enlace -->
+    <!-- Formulario para agregar un nuevo enlace al topic -->
     <h2>Agregar Enlace</h2>
     <form action="/topics/<%= topic.id %>/links" method="POST">
         <input type="text" name="title" placeholder="Título del enlace" required>
@@ -31,24 +34,26 @@
         <button type="submit">Agregar</button>
     </form>
 
-    <!-- Lista de enlaces -->
+    <!-- Lista de enlaces asociados al topic -->
     <h2>Enlaces</h2>
     <ul>
+        <!-- Itera sobre cada enlace y renderiza su tarjeta -->
         <% links.forEach(link=> { %>
             <li class="link">
+                <!-- Enlace externo: abre en nueva pestaña -->
                 <a href="<%= link.url %>" target="_blank">
                     <strong>
                         <%= link.title %>
                     </strong>
                 </a>
-                <!-- Votar enlace -->
+                <!-- Contador de votos y botón para votar el enlace (AJAX) -->
                 <span id="vote-count-<%= link.id %>">Votos: <%= link.votes %></span>
                 <button class="vote-link-btn" data-id="<%= link.id %>" data-topic-id="<%= topic.id %>">👍 Votar</button>
 
-                <!-- Editar enlace -->
+                <!-- Enlace para editar este enlace -->
                 <a href="/topics/<%= topic.id %>/links/<%= link.id %>/edit">✏️ Editar</a>
 
-                <!-- Eliminar enlace -->
+                <!-- Formulario de eliminar enlace: envía DELETE mediante method-override -->
                 <form action="/topics/<%= topic.id %>/links/<%= link.id %>?_method=DELETE" method="POST"
                     style="display:inline;">
                     <button type="submit">🗑️ Eliminar</button>
@@ -57,4 +62,5 @@
             <% }) %>
     </ul>
 
-    <%- include('../partials/footer.ejs') %>
+    <!-- Incluye el footer con cierre del main y scripts -->
+    <%- include('../partials/footer.ejs') %>
