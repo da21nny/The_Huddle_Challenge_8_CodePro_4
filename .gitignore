@@ -1,4 +1,4 @@
 node_modules
 data/db.json
 .env
-.gitignore
+data/learning_platform.db

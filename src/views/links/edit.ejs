@@ -1,0 +1,17 @@
+<!-- Incluye el header con head, navbar y apertura del main -->
+<%- include('../partials/header.ejs') %>
+
+    <!-- Enlace para volver al detalle del topic -->
+    <a href="/topics/<%= topicId %>">← Volver al Tema</a>
+
+    <h1>Editar Enlace</h1>
+
+    <!-- Formulario de edición: envía PUT mediante method-override -->
+    <form action="/topics/<%= topicId %>/links/<%= link.id %>?_method=PUT" method="POST">
+        <input type="text" name="title" value="<%= link.title %>" placeholder="Título del enlace" required>
+        <input type="text" name="url" value="<%= link.url %>" placeholder="URL del enlace" required>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <!-- Incluye el footer con cierre del main y scripts -->
+    <%- include('../partials/footer.ejs') %>

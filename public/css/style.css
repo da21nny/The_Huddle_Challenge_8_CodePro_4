@@ -1,0 +1,269 @@
+/*
+ * ============================================================
+ * Learn It, Love It Inc. — Hoja de estilos principal
+ * ============================================================
+ *
+ * Estructura del archivo:
+ *   1. Reset & Base
+ *   2. Typography
+ *   3. Links
+ *   4. Header
+ *   5. Footer
+ *   6. Forms & Inputs
+ *   7. Buttons (base + colores CRUD)
+ *   8. Lists
+ *   9. Cards — Topics
+ *  10. Cards — Links
+ *  11. Votes
+ *
+ * ============================================================
+ */
+
+/* ===== 1. Reset & Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #1a1a2e;
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ===== 2. Typography ===== */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4a4a6a;
+    margin-bottom: 12px;
+    margin-top: 28px;
+}
+
+p {
+    color: #5a5a7a;
+    margin: 4px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 24px 0;
+}
+
+/* ===== 3. Links ===== */
+a {
+    color: #4361ee;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #3a0ca3;
+    text-decoration: underline;
+}
+
+/* ===== 4. Header ===== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    margin-bottom: 32px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.header-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-decoration: none;
+}
+
+.header-logo:hover {
+    color: #4361ee;
+    text-decoration: none;
+}
+
+header nav a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #4361ee;
+}
+
+/* ===== 5. Footer ===== */
+footer {
+    margin-top: 48px;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 0.85rem;
+    color: #9a9ab0;
+}
+
+/* ===== 6. Forms & Inputs ===== */
+form[style*="inline"] {
+    display: inline !important;
+}
+
+form:not([style*="inline"]) {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #1a1a2e;
+    background-color: #fafafa;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #4361ee;
+    background-color: #fff;
+}
+
+input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+/* ===== 7. Buttons ===== */
+
+/* Base */
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin: 4px 4px 4px 0;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Crear — verde */
+form[action="/topics"] button[type="submit"],
+form[action*="/links"] button[type="submit"]:not(form[action*="vote"] button):not(form[action*="DELETE"] button) {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+/* Eliminar — rojo */
+form[action*="_method=DELETE"] button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* ===== 8. Lists ===== */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* ===== 9. Cards — Topics ===== */
+.topic {
+    background-color: #ffffff;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+    transition: box-shadow 0.2s;
+}
+
+.topic:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.topic a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4361ee;
+}
+
+.topic p {
+    font-size: 0.9rem;
+    color: #6b6b8d;
+    margin: 6px 0 10px;
+}
+
+.topic span {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2ecc71;
+    margin-right: 12px;
+}
+
+/* ===== 10. Cards — Links ===== */
+.link {
+    background-color: #ffffff;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+    transition: box-shadow 0.2s;
+}
+
+.link:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.link a {
+    font-weight: 600;
+    color: #4361ee;
+}
+
+.link span {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2ecc71;
+    margin: 0 12px;
+}
+
+/* ===== 11. Votes ===== */
+
+/* Botones de votar — azul */
+.vote-topic-btn,
+.vote-link-btn {
+    background-color: #4361ee;
+    color: #fff;
+}
+
+/* Feedback visual al votar — verde destacado */
+.voted-success {
+    color: #00b894 !important;
+}
+
