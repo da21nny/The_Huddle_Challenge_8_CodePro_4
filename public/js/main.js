@@ -1,54 +1,62 @@
+// Espera a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", () => {
-    const voteTopicButtons = document.querySelectorAll(".vote-topic-btn");
-    const voteLinkButtons = document.querySelectorAll(".vote-link-btn");
 
+    // Reordena los elementos de una lista por votos (mayor a menor)
     const reorderList = (listItem) => {
-        const ul = listItem.parentElement;
-        const items = Array.from(ul.children);
+        const ul = listItem.parentElement; // Obtiene el elemento padre (ul)
+        const items = Array.from(ul.children); // Convierte los hijos en un array
+
         items.sort((a, b) => {
+            // Extrae los votos de cada elemento y los convierte a número
             const votesA = parseInt(a.querySelector("span")?.innerText.replace("Votos: ", "")) || 0;
             const votesB = parseInt(b.querySelector("span")?.innerText.replace("Votos: ", "")) || 0;
-            return votesB - votesA;
+            return votesB - votesA; // Ordena de mayor a menor
         });
-        items.forEach(item => ul.appendChild(item));
+
+        items.forEach(item => ul.appendChild(item)); // Reordena los elementos
     };
 
-    voteTopicButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const topicId = button.dataset.id;
-            fetch(`/topics/${topicId}/vote`, { method: "POST" })
-                .then(response => response.json())
-                .then(data => {
-                    const voteSpan = document.getElementById(`topic-votes-${topicId}`);
-                    if (voteSpan) {
-                        voteSpan.innerText = `Votos: ${data.votes}`;
-                        voteSpan.classList.add("voted-success");
-                        reorderList(button.closest(".topic"));
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al votar el tema:", error);
-                });
+    // Envía voto al servidor, actualiza el DOM y reordena la lista
+    const handleVote = (url, spanId, cardSelector, button) => {
+        fetch(url, { method: "POST" }) // Envía voto al servidor
+            .then(response => response.json()) // Convierte la respuesta a JSON
+            .then(data => {
+                const voteSpan = document.getElementById(spanId); // Obtiene el span de votos
+                if (voteSpan) {
+                    voteSpan.innerText = `Votos: ${data.votes}`; // Actualiza los votos
+                    voteSpan.classList.add("voted-success"); // Agrega clase de éxito
+                    reorderList(button.closest(cardSelector)); // Reordena la lista
+                }
+            })
+            .catch(error => {
+                console.error("Error al votar:", error); // Muestra error en consola
+            });
+    };
+
+    // Listener para votar temas
+    document.querySelectorAll(".vote-topic-btn").forEach(button => { // Itera sobre todos los botones de votar temas
+        button.addEventListener("click", () => { // Agrega event listener para click
+            const topicId = button.dataset.id; // Obtiene el ID del tema
+            handleVote(
+                `/topics/${topicId}/vote`, // URL para votar
+                `topic-votes-${topicId}`, // ID del span de votos
+                ".topic", // Selector de la tarjeta
+                button // Botón que se hizo click
+            );
         });
     });
 
-    voteLinkButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const linkId = button.dataset.id;
-            const topicId = button.dataset.topicId;
-            fetch(`/topics/${topicId}/links/${linkId}/vote`, { method: "POST" })
-                .then(response => response.json())
-                .then(data => {
-                    const voteSpan = document.getElementById(`vote-count-${linkId}`);
-                    if (voteSpan) {
-                        voteSpan.innerText = `Votos: ${data.votes}`;
-                        voteSpan.classList.add("voted-success");
-                        reorderList(button.closest(".link"));
-                    }
-                })
-                .catch(error => {
-                    console.error("Error al votar el enlace:", error);
-                });
+    // Listener para votar enlaces
+    document.querySelectorAll(".vote-link-btn").forEach(button => { // Itera sobre todos los botones de votar enlaces
+        button.addEventListener("click", () => { // Agrega event listener para click
+            const linkId = button.dataset.id; // Obtiene el ID del enlace
+            const topicId = button.dataset.topicId; // Obtiene el ID del tema
+            handleVote(
+                `/topics/${topicId}/links/${linkId}/vote`, // URL para votar
+                `vote-count-${linkId}`, // ID del span de votos
+                ".link", // Selector de la tarjeta
+                button // Botón que se hizo click
+            );
         });
     });
 });
