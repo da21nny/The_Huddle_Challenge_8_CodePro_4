@@ -3,17 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- Hace la página responsive en dispositivos móviles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título dinámico: usa la variable 'title' si existe, sino el nombre por defecto -->
     <title>
         <%= typeof title !='undefined' ? title : 'Learn It, Love It Inc.' %>
     </title>
+    <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+    <!-- Navbar con logo y navegación principal -->
     <header>
         <a href="/topics" class="header-logo">Learn It, Love It Inc.</a>
         <nav>
             <a href="/topics">Temas</a>
         </nav>
-    </header>
+    </header>
