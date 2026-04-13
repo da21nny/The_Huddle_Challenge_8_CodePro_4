@@ -2,61 +2,40 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // Reordena los elementos de una lista por votos (mayor a menor)
-    const reorderList = (listItem) => {
-        const ul = listItem.parentElement; // Obtiene el elemento padre (ul)
-        const items = Array.from(ul.children); // Convierte los hijos en un array
-
-        items.sort((a, b) => {
-            // Extrae los votos de cada elemento y los convierte a número
-            const votesA = parseInt(a.querySelector("span")?.innerText.replace("Votos: ", "")) || 0;
-            const votesB = parseInt(b.querySelector("span")?.innerText.replace("Votos: ", "")) || 0;
-            return votesB - votesA; // Ordena de mayor a menor
-        });
-
-        items.forEach(item => ul.appendChild(item)); // Reordena los elementos
+    const reorderList = (list) => {
+        const item = Array.from(list.children); // Convierte los hijos de la lista en un array
+        item.sort((a, b) => (b.dataset.votes || 0) - (a.dataset.votes || 0)); // Ordena el array por votos
+        item.forEach(item => list.appendChild(item)); // Añade los elementos ordenados a la lista
     };
 
-    // Envía voto al servidor, actualiza el DOM y reordena la lista
-    const handleVote = (url, spanId, cardSelector, button) => {
-        fetch(url, { method: "POST" }) // Envía voto al servidor
-            .then(response => response.json()) // Convierte la respuesta a JSON
-            .then(data => {
-                const voteSpan = document.getElementById(spanId); // Obtiene el span de votos
-                if (voteSpan) {
-                    voteSpan.innerText = `Votos: ${data.votes}`; // Actualiza los votos
-                    voteSpan.classList.add("voted-success"); // Agrega clase de éxito
-                    reorderList(button.closest(cardSelector)); // Reordena la lista
-                }
-            })
-            .catch(error => {
-                console.error("Error al votar:", error); // Muestra error en consola
-            });
-    };
+    // Maneja el evento click en los botones de votar
+    document.addEventListener('click', async (e) => {
+        const button = e.target.closest(".vote-topic-btn, .vote-link-btn"); // Busca el botón más cercano
+        if (!button) return; // Si no se encuentra el botón, sale de la función
 
-    // Listener para votar temas
-    document.querySelectorAll(".vote-topic-btn").forEach(button => { // Itera sobre todos los botones de votar temas
-        button.addEventListener("click", () => { // Agrega event listener para click
-            const topicId = button.dataset.id; // Obtiene el ID del tema
-            handleVote(
-                `/topics/${topicId}/vote`, // URL para votar
-                `topic-votes-${topicId}`, // ID del span de votos
-                ".topic", // Selector de la tarjeta
-                button // Botón que se hizo click
-            );
-        });
-    });
+        const id = button.dataset.id; // Obtiene el id del botón
+        const topicId = button.dataset.topicId; // Obtiene el topicId del botón
 
-    // Listener para votar enlaces
-    document.querySelectorAll(".vote-link-btn").forEach(button => { // Itera sobre todos los botones de votar enlaces
-        button.addEventListener("click", () => { // Agrega event listener para click
-            const linkId = button.dataset.id; // Obtiene el ID del enlace
-            const topicId = button.dataset.topicId; // Obtiene el ID del tema
-            handleVote(
-                `/topics/${topicId}/links/${linkId}/vote`, // URL para votar
-                `vote-count-${linkId}`, // ID del span de votos
-                ".link", // Selector de la tarjeta
-                button // Botón que se hizo click
-            );
-        });
-    });
+        const url = topicId ? `/topics/${topicId}/links/${id}/vote` : `/topics/${id}/vote`; // Determina la URL según si es un link o un topic
+
+        const spanId = topicId ? `vote-count-${id}` : `topic-votes-${id}`; // Determina el id del span según si es un link o un topic
+
+        try {
+            const response = await fetch(url, { method: 'POST' }); // Envía la solicitud POST
+            const data = await response.json(); // Convierte la respuesta en JSON
+            const voteSpan = document.getElementById(spanId); // Obtiene el span de votos
+
+            if (voteSpan) {
+                voteSpan.innerText = `Votos: ${data.votes}`; // Actualiza el contador de votos
+
+                const listItem = button.closest("li"); // Obtiene el elemento de la lista
+                listItem.dataset.votes = data.votes; // Actualiza los votos del elemento
+
+                reorderList(listItem.parentElement); // Reordena la lista
+            }
+        }
+        catch (error) {
+            console.error("Error al votar:", error); // Muestra el error en la consola
+        }
+    })
 });
