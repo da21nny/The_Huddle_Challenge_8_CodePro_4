@@ -16,7 +16,7 @@
     <ul>
         <!-- Itera sobre cada topic y renderiza su tarjeta -->
         <% topics.forEach(topic=> { %>
-            <li class="topic">
+            <li class="topic" data-votes="<%= topic.votes %>">
                 <!-- Enlace al detalle del topic -->
                 <a href="/topics/<%= topic.id %>">
                     <strong>
@@ -43,4 +43,4 @@
     </ul>
 
     <!-- Incluye el footer con cierre del main y scripts -->
-    <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
