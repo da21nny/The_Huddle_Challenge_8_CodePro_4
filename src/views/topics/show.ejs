@@ -12,7 +12,7 @@
         <%= topic.description %>
     </p>
 
-    <!-- Contador de votos y botón para votar el topic (AJAX) -->
+    <!-- Contador de votos y botón para votar el topic -->
     <span id="topic-votes-<%= topic.id %>">Votos: <%= topic.votes %></span>
     <button class="vote-topic-btn" data-id="<%= topic.id %>">👍 Votar</button>
 
@@ -39,14 +39,14 @@
     <ul>
         <!-- Itera sobre cada enlace y renderiza su tarjeta -->
         <% links.forEach(link=> { %>
-            <li class="link">
+            <li class="link" data-votes="<%= link.votes %>">
                 <!-- Enlace externo: abre en nueva pestaña -->
                 <a href="<%= link.url %>" target="_blank">
                     <strong>
                         <%= link.title %>
                     </strong>
                 </a>
-                <!-- Contador de votos y botón para votar el enlace (AJAX) -->
+                <!-- Contador de votos y botón para votar el enlace -->
                 <span id="vote-count-<%= link.id %>">Votos: <%= link.votes %></span>
                 <button class="vote-link-btn" data-id="<%= link.id %>" data-topic-id="<%= topic.id %>">👍 Votar</button>
 
@@ -63,4 +63,4 @@
     </ul>
 
     <!-- Incluye el footer con cierre del main y scripts -->
-    <%- include('../partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
