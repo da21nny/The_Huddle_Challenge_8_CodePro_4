@@ -29,9 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 voteSpan.innerText = `Votos: ${data.votes}`; // Actualiza el contador de votos
 
                 const listItem = button.closest("li"); // Obtiene el elemento de la lista
-                listItem.dataset.votes = data.votes; // Actualiza los votos del elemento
 
-                reorderList(listItem.parentElement); // Reordena la lista
+                if (listItem) {
+                    listItem.dataset.votes = data.votes; // Actualiza los votos del elemento
+                    reorderList(listItem.parentElement); // Reordena la lista
+                }
             }
         }
         catch (error) {
