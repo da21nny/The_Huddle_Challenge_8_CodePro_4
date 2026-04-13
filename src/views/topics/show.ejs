@@ -12,7 +12,7 @@
         <%= topic.description %>
     </p>
 
-    <!-- Contador de votos y botón para votar el topic (AJAX) -->
+    <!-- Contador de votos y botón para votar el topic -->
     <span id="topic-votes-<%= topic.id %>">Votos: <%= topic.votes %></span>
     <button class="vote-topic-btn" data-id="<%= topic.id %>">👍 Votar</button>
 
@@ -46,7 +46,7 @@
                         <%= link.title %>
                     </strong>
                 </a>
-                <!-- Contador de votos y botón para votar el enlace (AJAX) -->
+                <!-- Contador de votos y botón para votar el enlace -->
                 <span id="vote-count-<%= link.id %>">Votos: <%= link.votes %></span>
                 <button class="vote-link-btn" data-id="<%= link.id %>" data-topic-id="<%= topic.id %>">👍 Votar</button>
 
