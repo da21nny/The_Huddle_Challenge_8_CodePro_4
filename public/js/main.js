@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Maneja el evento click en los botones de votar
     document.addEventListener('click', async (e) => {
-        const button = e.target.closest(".vote-topic-btn, .vote-link-btn"); // Busca el botón más cercano
-        if (!button) return; // Si no se encuentra el botón, sale de la función
+        const button = e.target.closest(".vote-topic-btn, .vote-link-btn"); //
+        if (!button) return; // Si no es el botón correspondiente, sale de la función
 
         const id = button.dataset.id; // Obtiene el id del botón
         const topicId = button.dataset.topicId; // Obtiene el topicId del botón
