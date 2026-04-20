@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Ruta absoluta al archivo de la base de datos SQLite
-const dbFile = path.join(__dirname, "../../data/learning_platform.db");
+const dbFile = path.join(__dirname, "learning_platform.db");
 
 // Crea la conexión a la base de datos
 const db = new sqlite3.Database(dbFile, (err) => {
