@@ -20,7 +20,7 @@ const vote = async (req, res) => {
         const link = await linkModel.getLinkById(id);
         res.json({ votes: link.votes });
     } catch (error) {
-        res.status(500).json({ error: "Error al votar" });
+        res.render("error", { message: "Error al votar" });
     }
 };
 

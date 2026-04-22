@@ -1,0 +1,49 @@
+
+    <a href="/topics">← Volver a Temas</a>
+
+    <h1>
+        {{ topic.title }}
+    </h1>
+    <p>
+        {{ topic.description }}
+    </p>
+
+    <span id="topic-votes-{{ topic.id }}">Votos: {{ topic.votes }}</span>
+    <button class="vote-topic-btn" data-id="{{ topic.id }}">👍 Votar</button>
+
+    <a href="/topics/{{ topic.id }}/edit">✏️ Editar Tema</a>
+
+    <form action="/topics/{{ topic.id }}?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit">🗑️ Eliminar Tema</button>
+    </form>
+
+    <hr>
+
+    <h2>Agregar Enlace</h2>
+    <form action="/topics/{{ topic.id }}/links" method="POST">
+        <input type="text" name="title" placeholder="Título del enlace" required>
+        <input type="text" name="url" placeholder="URL del enlace" required>
+        <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Enlaces</h2>
+    <ul>
+        {{#each links}}
+            <li class="link" data-votes="{{ this.votes }}">
+                <a href="{{ this.url }}" target="_blank">
+                    <strong>
+                        {{ this.title }}
+                    </strong>
+                </a>
+                <span id="vote-count-{{ this.id }}">Votos: {{ this.votes }}</span>
+                <button class="vote-link-btn" data-id="{{ this.id }}" data-topic-id="{{ ../topic.id }}">👍 Votar</button>
+
+                <a href="/topics/{{ ../topic.id }}/links/{{ this.id }}/edit">✏️ Editar</a>
+
+                <form action="/topics/{{ ../topic.id }}/links/{{ this.id }}?_method=DELETE" method="POST"
+                    style="display:inline;">
+                    <button type="submit">🗑️ Eliminar</button>
+                </form>
+            </li>
+        {{/each}}
+    </ul>

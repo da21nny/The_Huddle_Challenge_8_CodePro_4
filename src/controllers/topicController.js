@@ -30,7 +30,7 @@ const vote = async (req, res) => {
         const topic = await topicModel.getTopicById(id);
         res.json({ votes: topic.votes });
     } catch (error) {
-        res.status(500).json({ error: "Error al votar" });
+        res.render("error", { message: "Error al votar" });
     }
 };
 

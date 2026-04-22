@@ -6,6 +6,7 @@ import methodOverride from "method-override"; // Permite usar PUT y DELETE en fo
 import { initDB } from "./src/config/db.js"; // Función para crear las tablas
 import topicRoutes from "./src/routes/topicRoutes.js";
 import linkRoutes from "./src/routes/linkRoutes.js";
+import { engine } from "express-handlebars";
 
 // ===== Configuración de rutas del sistema =====
 const __filename = fileURLToPath(import.meta.url); // Ruta del archivo actual (requerido en ES Modules)
@@ -24,8 +25,17 @@ app.use(urlencoded({ extended: true })); // Parsea cuerpos de formularios HTML
 app.use(methodOverride("_method")); // Lee ?_method=PUT/DELETE del query string
 
 // ===== Motor de plantillas =====
-app.set("views", path.join(__dirname, "src/views")); // Directorio de vistas EJS
-app.set("view engine", "ejs"); // Establece EJS como motor de plantillas
+app.engine('hbs', engine({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    layoutsDir: path.join(__dirname, 'src/views/layouts'),
+    partialsDir: path.join(__dirname, 'src/views/partials'),
+    helpers: {
+        getFullYear: () => new Date().getFullYear()
+    }
+}));
+app.set("views", path.join(__dirname, "src/views")); // Directorio de vistas
+app.set("view engine", "hbs"); // Establece Handlebars como motor de plantillas
 
 // ===== Archivos estáticos =====
 app.use(express.static(path.join(__dirname, "public"))); // Sirve CSS, JS e imágenes desde /public

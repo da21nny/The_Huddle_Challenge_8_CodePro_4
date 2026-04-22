@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {{#if title}}{{title}}{{else}}Learn It, Love It Inc.{{/if}}
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="/topics" class="header-logo">Learn It, Love It Inc.</a>
+        <nav>
+            <a href="/topics">Temas</a>
+        </nav>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer>
+        <p>&copy; {{getFullYear}} Learn It, Love It Inc. Todos los derechos reservados.</p>
+    </footer>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
