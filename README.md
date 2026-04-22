@@ -2,7 +2,7 @@
 
 Aplicación web full-stack desarrollada con **Node.js**, **Express** y **SQLite** que permite gestionar **temas de aprendizaje** y sus **enlaces de recursos** asociados. Diseñada para fomentar el aprendizaje colaborativo, la plataforma ofrece un sistema de votación que prioriza los contenidos más valorados por la comunidad.
 
-El proyecto implementa una arquitectura **MVC (Modelo-Vista-Controlador)** con operaciones **CRUD completas** (Crear, Leer, Actualizar, Eliminar) tanto para temas como para enlaces, utilizando **EJS** como motor de plantillas para renderizado del lado del servidor y **AJAX** para las interacciones de votación sin recargar la página.
+El proyecto implementa una arquitectura **MVC (Modelo-Vista-Controlador)** con operaciones **CRUD completas** (Crear, Leer, Actualizar, Eliminar) tanto para temas como para enlaces, utilizando **Handlebars** como motor de plantillas para renderizado del lado del servidor y **AJAX** para las interacciones de votación sin recargar la página.
 
 ---
 
@@ -86,16 +86,15 @@ The_Huddle_Challenge_8_CodePro_4/
     │   ├── topicRoutes.js          # Rutas REST de temas
     │   └── linkRoutes.js           # Rutas REST de enlaces
     └── views/
-        ├── error.ejs               # Página de error
-        ├── partials/
-        │   ├── header.ejs          # Header compartido (head + navbar)
-        │   └── footer.ejs          # Footer compartido (scripts + cierre)
+        ├── error.hbs               # Página de error
+        ├── layouts/
+        │   └── main.hbs            # Layout principal compartido
         ├── topics/
-        │   ├── index.ejs           # Lista de temas
-        │   ├── show.ejs            # Detalle de un tema con sus enlaces
-        │   └── edit.ejs            # Formulario de edición de tema
+        │   ├── index.hbs           # Lista de temas
+        │   ├── show.hbs            # Detalle de un tema con sus enlaces
+        │   └── edit.hbs            # Formulario de edición de tema
         └── links/
-            └── edit.ejs            # Formulario de edición de enlace
+            └── edit.hbs            # Formulario de edición de enlace
 ```
 
 ---
@@ -147,7 +146,7 @@ http://localhost:3000
 | Librería | Versión | Descripción |
 |---|---|---|
 | [Express](https://expressjs.com/) | ^5.2.1 | Framework web para Node.js |
-| [EJS](https://ejs.co/) | ^5.0.1 | Motor de plantillas para generar HTML dinámico |
+| [express-handlebars](https://github.com/express-handlebars/express-handlebars) | ^9.0.1 | Motor de plantillas para generar HTML dinámico |
 | [SQLite3](https://github.com/TryGhost/node-sqlite3) | ^6.0.1 | Base de datos embebida, sin servidor externo |
 | [method-override](https://github.com/expressjs/method-override) | ^3.0.0 | Soporte para PUT y DELETE en formularios HTML |
 
