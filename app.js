@@ -29,7 +29,6 @@ app.engine('hbs', engine({
     extname: '.hbs',
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'src/views/layouts'),
-    partialsDir: path.join(__dirname, 'src/views/partials'),
     helpers: {
         getFullYear: () => new Date().getFullYear()
     }
